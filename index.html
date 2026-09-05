@@ -120,13 +120,39 @@
             border: 1px solid var(--gold-light);
             transform: rotate(45deg);
         }
+.domain {
+    display: inline-flex;
+    align-items: center;
+    position: relative;
+    color: rgba(245, 241, 232, 0.55);
+    font-family: "DM Mono", monospace;
+    font-size: 10px;
+    letter-spacing: 0.08em;
+    text-decoration: none;
+    transition: color 250ms ease;
+}
 
-        .domain {
-            color: rgba(245, 241, 232, 0.55);
-            font-family: "DM Mono", monospace;
-            font-size: 10px;
-            letter-spacing: 0.08em;
-        }
+.domain::after {
+    content: "";
+    position: absolute;
+    right: 0;
+    bottom: -6px;
+    left: 0;
+    height: 1px;
+    background: var(--gold-light);
+    transform: scaleX(0);
+    transform-origin: right;
+    transition: transform 280ms ease;
+}
+
+.domain:hover {
+    color: var(--cream);
+}
+
+.domain:hover::after {
+    transform: scaleX(1);
+    transform-origin: left;
+} 
 
         .hero-label {
             display: flex;
@@ -709,7 +735,9 @@
                 <span>NVO987 – Culture Visuelle Moderne et Contemporaine</span>
             </a>
 
-            <span class="domain">recherche.nvo987.fr</span>
+            <a class="domain" href="https://www.nvo987.fr" aria-label="Visiter www.nvo987.fr">
+    www.nvo987.fr
+            </a> 
         </div>
 
         <div class="hero-label">Études · Culture · Perception · IA</div>
