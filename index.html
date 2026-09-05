@@ -1,0 +1,966 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Recherche — Couleur, culture, pédagogie & intelligence artificielle</title>
+    <meta name="description" content="Recherche sur l’acquisition des couleurs chez les enfants, les environnements culturels et pédagogiques, et le rôle de l’intelligence artificielle générative.">
+    <meta name="theme-color" content="#171817">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --ink: #171817;
+            --ink-soft: #30322f;
+            --cream: #f5f1e8;
+            --cream-deep: #ebe4d7;
+            --paper: #faf8f3;
+            --gold: #b69a68;
+            --gold-light: #d4c19b;
+            --line: rgba(23, 24, 23, 0.13);
+            --white-line: rgba(255, 255, 255, 0.13);
+            --max-width: 1180px;
+            --reading-width: 790px;
+            --radius: 2px;
+            --shadow: 0 30px 80px rgba(23, 24, 23, 0.08);
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            margin: 0;
+            color: var(--ink);
+            background: var(--cream);
+            font-family: "Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+            line-height: 1.78;
+            -webkit-font-smoothing: antialiased;
+            text-rendering: optimizeLegibility;
+        }
+
+        ::selection {
+            color: var(--cream);
+            background: var(--ink);
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        a:focus-visible {
+            outline: 2px solid var(--gold-light);
+            outline-offset: 5px;
+        }
+
+        .site-header {
+            position: relative;
+            overflow: hidden;
+            min-height: 88vh;
+            display: flex;
+            align-items: center;
+            color: var(--cream);
+            background:
+                radial-gradient(circle at 82% 20%, rgba(182, 154, 104, 0.15), transparent 28%),
+                radial-gradient(circle at 15% 90%, rgba(255, 255, 255, 0.045), transparent 25%),
+                var(--ink);
+        }
+
+        .site-header::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            pointer-events: none;
+            opacity: 0.35;
+            background-image:
+                linear-gradient(rgba(255,255,255,.035) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255,255,255,.035) 1px, transparent 1px);
+            background-size: 72px 72px;
+            mask-image: linear-gradient(to bottom, black, transparent 90%);
+        }
+
+        .header-inner {
+            position: relative;
+            width: min(var(--max-width), calc(100% - 40px));
+            margin: 0 auto;
+            padding: 64px 0 72px;
+        }
+
+        .topline {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 24px;
+            margin-bottom: clamp(70px, 13vh, 145px);
+        }
+
+        .brand {
+            display: inline-flex;
+            align-items: center;
+            gap: 13px;
+            font-family: "DM Mono", monospace;
+            font-size: 11px;
+            font-weight: 500;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+        }
+
+        .brand-mark {
+            width: 11px;
+            height: 11px;
+            border: 1px solid var(--gold-light);
+            transform: rotate(45deg);
+        }
+
+        .domain {
+            color: rgba(245, 241, 232, 0.55);
+            font-family: "DM Mono", monospace;
+            font-size: 10px;
+            letter-spacing: 0.08em;
+        }
+
+        .hero-label {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            margin-bottom: 28px;
+            color: var(--gold-light);
+            font-family: "DM Mono", monospace;
+            font-size: 10px;
+            letter-spacing: 0.18em;
+            line-height: 1.4;
+            text-transform: uppercase;
+        }
+
+        .hero-label::before {
+            content: "";
+            width: 42px;
+            height: 1px;
+            background: var(--gold);
+        }
+
+        h1 {
+            max-width: 1050px;
+            margin: 0;
+            font-family: "Playfair Display", Georgia, serif;
+            font-size: clamp(3rem, 7vw, 6.8rem);
+            font-weight: 500;
+            letter-spacing: -0.045em;
+            line-height: 0.99;
+        }
+
+        .hero-bottom {
+            display: grid;
+            grid-template-columns: 1fr auto;
+            align-items: end;
+            gap: 40px;
+            margin-top: 56px;
+        }
+
+        .hero-intro {
+            max-width: 610px;
+            margin: 0;
+            color: rgba(245, 241, 232, 0.68);
+            font-size: 14px;
+            line-height: 1.75;
+        }
+
+        .scroll-indicator {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            color: rgba(245, 241, 232, 0.5);
+            font-family: "DM Mono", monospace;
+            font-size: 9px;
+            letter-spacing: 0.16em;
+            text-transform: uppercase;
+            writing-mode: vertical-rl;
+        }
+
+        .scroll-indicator::after {
+            content: "";
+            width: 1px;
+            height: 62px;
+            background: linear-gradient(to bottom, var(--gold), transparent);
+        }
+
+        .research-navigation {
+            position: sticky;
+            top: 0;
+            z-index: 20;
+            border-bottom: 1px solid var(--line);
+            background: rgba(245, 241, 232, 0.9);
+            backdrop-filter: blur(18px);
+        }
+
+        .nav-inner {
+            width: min(var(--max-width), calc(100% - 40px));
+            margin: 0 auto;
+            min-height: 64px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 24px;
+        }
+
+        .nav-label {
+            color: #73736d;
+            font-family: "DM Mono", monospace;
+            font-size: 9px;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 34px;
+        }
+
+        .nav-links a {
+            position: relative;
+            padding: 23px 0;
+            font-size: 11px;
+            font-weight: 600;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+        }
+
+        .nav-links a::after {
+            content: "";
+            position: absolute;
+            right: 0;
+            bottom: 17px;
+            left: 0;
+            height: 1px;
+            transform: scaleX(0);
+            transform-origin: right;
+            background: var(--gold);
+            transition: transform 280ms ease;
+        }
+
+        .nav-links a:hover::after {
+            transform: scaleX(1);
+            transform-origin: left;
+        }
+
+        main {
+            background: var(--cream);
+        }
+
+        .research-section {
+            position: relative;
+            padding: clamp(75px, 10vw, 145px) 20px;
+        }
+
+        .research-section + .research-section {
+            border-top: 1px solid var(--line);
+        }
+
+        .section-grid {
+            width: min(var(--max-width), 100%);
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: minmax(220px, 0.7fr) minmax(0, 2fr);
+            gap: clamp(45px, 8vw, 130px);
+        }
+
+        .section-aside {
+            position: sticky;
+            top: 105px;
+            align-self: start;
+        }
+
+        .section-number {
+            display: block;
+            margin-bottom: 22px;
+            color: var(--gold);
+            font-family: "DM Mono", monospace;
+            font-size: 12px;
+            letter-spacing: 0.16em;
+        }
+
+        .section-index {
+            margin: 0;
+            color: rgba(23, 24, 23, 0.35);
+            font-family: "Playfair Display", Georgia, serif;
+            font-size: clamp(45px, 6vw, 80px);
+            font-weight: 500;
+            line-height: 1;
+        }
+
+        .aside-rule {
+            width: 54px;
+            height: 1px;
+            margin: 34px 0 22px;
+            background: var(--gold);
+        }
+
+        .aside-caption {
+            max-width: 210px;
+            margin: 0;
+            color: #77766f;
+            font-family: "DM Mono", monospace;
+            font-size: 9px;
+            line-height: 1.7;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+        }
+
+        .section-content {
+            min-width: 0;
+        }
+
+        .section-content h2 {
+            max-width: 900px;
+            margin: 0 0 55px;
+            font-family: "Playfair Display", Georgia, serif;
+            font-size: clamp(2.3rem, 4.5vw, 4.6rem);
+            font-weight: 500;
+            letter-spacing: -0.035em;
+            line-height: 1.08;
+        }
+
+        .section-content h2::first-letter {
+            color: var(--gold);
+        }
+
+        .article-copy {
+            max-width: var(--reading-width);
+        }
+
+        .article-copy p {
+            margin: 0 0 29px;
+            color: #3e403c;
+            font-size: 15px;
+            line-height: 1.9;
+        }
+
+        .article-copy p:first-child {
+            color: var(--ink);
+            font-size: 17px;
+            line-height: 1.85;
+        }
+
+        .article-copy p:first-child::first-letter {
+            float: left;
+            margin: 9px 11px 0 0;
+            color: var(--gold);
+            font-family: "Playfair Display", Georgia, serif;
+            font-size: 70px;
+            line-height: 0.72;
+        }
+
+        .highlight {
+            position: relative;
+            max-width: var(--reading-width);
+            margin: 58px 0;
+            padding: 35px 0 35px 31px;
+            border-left: 1px solid var(--gold);
+            color: var(--ink-soft);
+            font-family: "Playfair Display", Georgia, serif;
+            font-size: clamp(1.35rem, 2.4vw, 1.9rem);
+            font-style: italic;
+            line-height: 1.45;
+        }
+
+        .concept-card {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1px;
+            max-width: var(--reading-width);
+            margin: 58px 0;
+            overflow: hidden;
+            background: var(--line);
+            border: 1px solid var(--line);
+        }
+
+        .concept {
+            padding: 28px;
+            background: rgba(250, 248, 243, 0.7);
+        }
+
+        .concept-label {
+            display: block;
+            margin-bottom: 13px;
+            color: var(--gold);
+            font-family: "DM Mono", monospace;
+            font-size: 9px;
+            letter-spacing: 0.13em;
+            text-transform: uppercase;
+        }
+
+        .concept strong {
+            display: block;
+            font-family: "Playfair Display", Georgia, serif;
+            font-size: 21px;
+            font-weight: 500;
+            line-height: 1.3;
+        }
+
+        .site-footer {
+            position: relative;
+            overflow: hidden;
+            color: var(--cream);
+            background: var(--ink);
+        }
+
+        .site-footer::before {
+            content: "";
+            position: absolute;
+            width: 500px;
+            height: 500px;
+            right: -240px;
+            top: -250px;
+            border: 1px solid rgba(182, 154, 104, 0.14);
+            border-radius: 50%;
+            box-shadow:
+                0 0 0 70px rgba(182, 154, 104, 0.025),
+                0 0 0 140px rgba(182, 154, 104, 0.02);
+        }
+
+        .footer-inner {
+            position: relative;
+            width: min(var(--max-width), calc(100% - 40px));
+            margin: 0 auto;
+            padding: 100px 0 38px;
+        }
+
+        .footer-heading {
+            max-width: 680px;
+            margin: 0 0 70px;
+            font-family: "Playfair Display", Georgia, serif;
+            font-size: clamp(2.3rem, 5vw, 5rem);
+            font-weight: 500;
+            letter-spacing: -0.04em;
+            line-height: 1.03;
+        }
+
+        .footer-heading span {
+            color: var(--gold-light);
+        }
+
+        .footer-links {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            border-top: 1px solid var(--white-line);
+            border-bottom: 1px solid var(--white-line);
+        }
+
+        .footer-link {
+            min-width: 0;
+            padding: 28px 26px 30px;
+            border-right: 1px solid var(--white-line);
+            transition:
+                background 250ms ease,
+                padding-left 250ms ease;
+        }
+
+        .footer-link:first-child {
+            padding-left: 0;
+        }
+
+        .footer-link:last-child {
+            border-right: 0;
+        }
+
+        .footer-link:hover {
+            padding-left: 34px;
+            background: rgba(255,255,255,0.035);
+        }
+
+        .footer-link:first-child:hover {
+            padding-left: 10px;
+        }
+
+        .footer-link-label {
+            display: block;
+            margin-bottom: 13px;
+            color: rgba(245, 241, 232, 0.42);
+            font-family: "DM Mono", monospace;
+            font-size: 9px;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+        }
+
+        .footer-link-value {
+            display: block;
+            overflow-wrap: anywhere;
+            color: var(--cream);
+            font-size: 13px;
+            line-height: 1.6;
+        }
+
+        .footer-link-value.mono {
+            font-family: "DM Mono", monospace;
+            font-size: 11px;
+            letter-spacing: 0.02em;
+        }
+
+        .footer-bottom {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 25px;
+            padding-top: 32px;
+            color: rgba(245, 241, 232, 0.38);
+            font-family: "DM Mono", monospace;
+            font-size: 8px;
+            letter-spacing: 0.1em;
+            line-height: 1.7;
+            text-transform: uppercase;
+        }
+
+        .footer-bottom p {
+            margin: 0;
+        }
+
+        @media (max-width: 850px) {
+            .site-header {
+                min-height: auto;
+            }
+
+            .header-inner {
+                padding-top: 38px;
+                padding-bottom: 58px;
+            }
+
+            .topline {
+                margin-bottom: 90px;
+            }
+
+            .hero-bottom {
+                grid-template-columns: 1fr;
+            }
+
+            .scroll-indicator {
+                display: none;
+            }
+
+            .section-grid {
+                grid-template-columns: 1fr;
+                gap: 38px;
+            }
+
+            .section-aside {
+                position: static;
+            }
+
+            .section-index {
+                display: inline-block;
+            }
+
+            .aside-rule {
+                margin: 20px 0 15px;
+            }
+
+            .aside-caption {
+                max-width: 400px;
+            }
+
+            .section-content h2 {
+                margin-bottom: 42px;
+            }
+        }
+
+        @media (max-width: 650px) {
+            .header-inner,
+            .nav-inner,
+            .footer-inner {
+                width: min(100% - 32px, var(--max-width));
+            }
+
+            .domain {
+                display: none;
+            }
+
+            .hero-label {
+                max-width: 300px;
+            }
+
+            h1 {
+                font-size: clamp(2.8rem, 13vw, 4.4rem);
+            }
+
+            .research-navigation {
+                position: relative;
+            }
+
+            .nav-inner {
+                min-height: 58px;
+            }
+
+            .nav-label {
+                display: none;
+            }
+
+            .nav-links {
+                width: 100%;
+                justify-content: space-between;
+                gap: 15px;
+            }
+
+            .nav-links a {
+                padding: 19px 0;
+                font-size: 9px;
+            }
+
+            .nav-links a::after {
+                bottom: 14px;
+            }
+
+            .research-section {
+                padding: 70px 16px;
+            }
+
+            .section-content h2 {
+                font-size: clamp(2.25rem, 11vw, 3.4rem);
+            }
+
+            .article-copy p,
+            .article-copy p:first-child {
+                font-size: 14px;
+                line-height: 1.85;
+            }
+
+            .article-copy p:first-child::first-letter {
+                font-size: 60px;
+            }
+
+            .highlight {
+                margin: 45px 0;
+                padding: 25px 0 25px 20px;
+                font-size: 1.3rem;
+            }
+
+            .concept-card {
+                grid-template-columns: 1fr;
+            }
+
+            .concept {
+                padding: 24px;
+            }
+
+            .footer-inner {
+                padding-top: 75px;
+            }
+
+            .footer-heading {
+                margin-bottom: 50px;
+            }
+
+            .footer-links {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-link,
+            .footer-link:first-child {
+                padding: 25px 0;
+                border-right: 0;
+                border-bottom: 1px solid var(--white-line);
+            }
+
+            .footer-link:last-child {
+                border-bottom: 0;
+            }
+
+            .footer-link:hover,
+            .footer-link:first-child:hover {
+                padding-left: 10px;
+            }
+
+            .footer-bottom {
+                align-items: flex-start;
+                flex-direction: column;
+                gap: 10px;
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            html {
+                scroll-behavior: auto;
+            }
+
+            *,
+            *::before,
+            *::after {
+                transition-duration: 0.01ms !important;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<header class="site-header">
+    <div class="header-inner">
+        <div class="topline">
+            <a class="brand" href="https://recherche.nvo987.fr" aria-label="NVO987 Recherche">
+                <span class="brand-mark" aria-hidden="true"></span>
+                <span>NVO987 / Recherche</span>
+            </a>
+
+            <span class="domain">recherche.nvo987.fr</span>
+        </div>
+
+        <div class="hero-label">Études · Culture · Perception · IA</div>
+
+        <h1>L’acquisition des couleurs chez les enfants dans différents environnements culturels à l’ère des algorithmes</h1>
+
+        <div class="hero-bottom">
+            <p class="hero-intro">
+                Une réflexion sur la couleur, l’enfant, la culture et les nouvelles possibilités offertes par l’intelligence artificielle générative dans les environnements visuels et pédagogiques.
+            </p>
+
+            <div class="scroll-indicator" aria-hidden="true">
+                Explorer
+            </div>
+        </div>
+    </div>
+</header>
+
+<nav class="research-navigation" aria-label="Navigation de la recherche">
+    <div class="nav-inner">
+        <span class="nav-label">Document de recherche</span>
+
+        <div class="nav-links">
+            <a href="#recherche-01">Recherche 01</a>
+            <a href="#recherche-02">Recherche 02</a>
+            <a href="#contact">Contact</a>
+        </div>
+    </div>
+</nav>
+
+<main>
+
+    <section class="research-section" id="recherche-01">
+        <div class="section-grid">
+
+            <aside class="section-aside">
+                <span class="section-number">01 / 02</span>
+                <p class="section-index">I.</p>
+                <div class="aside-rule"></div>
+                <p class="aside-caption">
+                    Couleur · Enfant · Culture · Environnement numérique · Intelligence artificielle
+                </p>
+            </aside>
+
+            <article class="section-content">
+                <h2>L’acquisition des couleurs chez les enfants dans différents environnements culturels à l’ère des algorithmes</h2>
+
+                <div class="article-copy">
+
+                    <p>
+                        La recherche examine comment se développent les connaissances des enfants relatives aux couleurs et le système de significations qui leur est associé dans différents contextes culturels, ainsi que le rôle que peuvent jouer dans ce processus la culture numérique de l’image et l’émergence de l’intelligence artificielle générative. L’hypothèse fondamentale de la recherche est que les connaissances des enfants en matière de couleurs ne résultent pas exclusivement du développement biologique et perceptuel. Bien que l’enfant dispose de la capacité biologique de percevoir les couleurs, la manière dont il nomme une couleur, la catégorie dans laquelle il la classe, les objets auxquels il l’associe et la signification qu’il lui attribue peuvent être fortement influencées par son environnement.
+                    </p>
+
+                    <p>
+                        L’acquisition des couleurs est un processus progressif. L’enfant apprend d’abord à percevoir et à différencier les différentes couleurs, puis il apprend à les reconnaître et à les nommer, avant de les organiser en catégories. À des stades ultérieurs du développement, des significations sociales, émotionnelles et culturelles peuvent également être associées aux couleurs. De ce fait, une même couleur peut avoir une signification différente selon les contextes culturels. L’enfant ne rencontre pas les couleurs de manière isolée, mais à travers les jeux, les vêtements, les objets, les images, les fêtes, les symboles religieux et son environnement quotidien. Ces expériences répétées contribuent progressivement à déterminer quelles couleurs l’enfant considère comme familières et quelles significations il leur associe.
+                    </p>
+
+                    <p>
+                        L’une des questions importantes de la recherche est donc de savoir dans quelle mesure le contexte culturel influence l’acquisition des couleurs. L’auteur n’affirme pas que les enfants vivant dans des cultures différentes perçoivent fondamentalement les couleurs de manière différente. Il examine plutôt comment les catégories linguistiques associées aux couleurs, les relations avec les objets et les significations culturelles peuvent se développer de manière différente. La couleur n’est donc pas seulement une propriété visuelle, mais également un élément auquel la société associe certaines significations et certains modes d’utilisation.
+                    </p>
+
+                    <p>
+                        La recherche poursuit l’examen de cette question dans l’environnement numérique contemporain. Aujourd’hui, les expériences visuelles des enfants ne proviennent plus exclusivement de leur environnement physique immédiat. Les jeux numériques, les vidéos, les animations, les contenus en ligne et les différentes images apparaissant sur les écrans constituent une part croissante de l’environnement visuel quotidien. Les images numériques permettent à l’enfant d’entrer en contact avec des objets, des lieux et des combinaisons de couleurs qui, autrement, ne seraient pas présents dans son environnement propre.
+                    </p>
+
+                    <p>
+                        L’émergence de l’intelligence artificielle générative porte ce processus à un niveau supplémentaire. Contrairement aux images numériques traditionnelles, les images peuvent, grâce à l’IA, non seulement être visualisées, mais également être créées et modifiées rapidement. Un objet ou une scène, par exemple, peut apparaître en peu de temps dans différentes couleurs et selon différents styles visuels. De ce fait, la couleur peut de plus en plus apparaître comme un élément visuel modifiable, qui n’est pas nécessairement associé de manière stable à un objet ou à une représentation donnée.
+                    </p>
+
+                    <div class="highlight">
+                        La couleur n’est donc pas seulement une propriété visuelle, mais également un élément auquel la société associe certaines significations et certains modes d’utilisation.
+                    </div>
+
+                    <p>
+                        La recherche ne suppose toutefois pas que l’intelligence artificielle modifie à elle seule et de la même manière l’acquisition des couleurs chez tous les enfants. Elle met plutôt l’accent sur la manière dont les images créées par l’IA s’articulent avec les expériences culturelles et visuelles déjà acquises par l’enfant. Bien que la même technologie soit accessible dans de nombreux pays, les individus ne l’utilisent pas nécessairement de la même manière et ne créent pas nécessairement les mêmes images avec celle-ci. La culture locale, l’environnement familial, l’éducation, les habitudes sociales et les traditions visuelles peuvent tous influencer les types d’images créées par l’IA auxquels un enfant est confronté.
+                    </p>
+
+                    <p>
+                        À partir de ce constat, la recherche envisage plusieurs conséquences possibles. Il est possible que l’intelligence artificielle ne fasse que prolonger les usages de la couleur et les traditions visuelles déjà existants dans une culture donnée. Dans ce cas, la nouvelle technologie ne ferait que fournir un nouvel outil permettant de représenter des modèles culturels préexistants. Une autre possibilité est que l’IA crée de nouvelles combinaisons de couleurs et de nouvelles relations visuelles qui, avec le temps, pourraient modifier les associations couleur–objet ou couleur–signification auxquelles les enfants étaient auparavant habitués.
+                    </p>
+
+                    <p>
+                        Il est également possible que les systèmes d’intelligence artificielle utilisés à l’échelle mondiale rendent certains modèles visuels et certaines palettes de couleurs de plus en plus répandus, ce qui pourrait réduire les différences visuelles entre les différentes cultures. La recherche désigne ce phénomène sous le terme d’homogénéisation culturelle. Toutefois, le processus inverse est également envisageable : grâce à l’IA, les couleurs locales, les traditions visuelles et les symboles culturels peuvent être plus facilement reproduits et transmis. Dans ce cas, la technologie pourrait plutôt renforcer la diversité culturelle.
+                    </p>
+
+                    <div class="concept-card">
+                        <div class="concept">
+                            <span class="concept-label">Hypothèse A</span>
+                            <strong>Homogénéisation culturelle</strong>
+                        </div>
+
+                        <div class="concept">
+                            <span class="concept-label">Hypothèse B</span>
+                            <strong>Renforcement de la diversité</strong>
+                        </div>
+                    </div>
+
+                    <p>
+                        La prochaine étape de la recherche aurait donc pour objectif d’examiner également ces différentes possibilités sur le plan empirique. Pour cela, il faudrait étudier, dans différents contextes culturels, les expériences réelles des enfants en matière de couleurs, par exemple la manière dont ils reconnaissent et nomment les couleurs, la façon dont ils les catégorisent, ainsi que les objets et les significations auxquels ils les associent. Il faudrait également examiner les types de contenus visuels numériques et générés par l’IA auxquels les enfants sont confrontés dans leur environnement respectif.
+                    </p>
+
+                    <p>
+                        Dans l’ensemble, la recherche se concentre donc sur la relation entre l’enfant, la couleur, la culture et l’intelligence artificielle. L’étude ne cherche pas à démontrer dès à présent l’effet concret de l’IA sur la perception des couleurs ou l’acquisition des couleurs chez les enfants. Elle vise plutôt à établir un cadre théorique permettant d’étudier ultérieurement cette question au moyen de recherches empiriques menées dans différentes cultures. L’idée centrale de la recherche est que le monde visuel créé par l’intelligence artificielle n’exerce pas son influence de manière isolée, mais qu’il s’inscrit toujours dans un environnement culturel et social préexistant. C’est précisément pourquoi, pour comprendre comment l’IA peut influencer le rapport des enfants aux couleurs, il est nécessaire de prendre en compte non seulement la technologie, mais également l’environnement culturel de l’enfant.
+                    </p>
+
+                </div>
+            </article>
+        </div>
+    </section>
+
+
+    <section class="research-section" id="recherche-02">
+        <div class="section-grid">
+
+            <aside class="section-aside">
+                <span class="section-number">02 / 02</span>
+                <p class="section-index">II.</p>
+                <div class="aside-rule"></div>
+                <p class="aside-caption">
+                    Pédagogie · Apprentissage · Perception · Variables chromatiques · Méthodologie
+                </p>
+            </aside>
+
+            <article class="section-content">
+                <h2>Le rôle de la couleur dans les environnements pédagogiques et d’apprentissage et la perception des enfants</h2>
+
+                <div class="article-copy">
+
+                    <p>
+                        La recherche examine le rôle que joue la couleur dans les environnements pédagogiques et d’apprentissage, en particulier du point de vue de la perception visuelle des enfants. Le point de départ de la recherche est l’idée que, pour l’enfant, la couleur ne se présente pas comme une propriété visuelle autonome et isolée, mais qu’elle fait toujours partie d’un environnement visuel plus complexe. L’enfant ne perçoit pas simplement une couleur donnée, mais l’expérimente en association avec les formes, la disposition spatiale, les contrastes, les conditions d’éclairage et les autres couleurs.
+                    </p>
+
+                    <p>
+                        La recherche examine donc la relation entre la couleur et la perception des enfants dans un contexte plus large. Dans un environnement pédagogique ou d’apprentissage, l’enfant est confronté à un espace visuel préalablement conçu, dans lequel les couleurs sont déjà organisées d’une certaine manière. Dans l’approche traditionnelle, l’environnement visuel est d’abord créé, puis l’enfant le perçoit et l’interprète. Selon la recherche, toutefois, l’apparition de l’intelligence artificielle générative place ce processus dans une nouvelle situation, car l’environnement visuel peut désormais être créé et modifié en peu de temps.
+                    </p>
+
+                    <p>
+                        Grâce à l’intelligence artificielle générative, une image, voire un environnement visuel complet, peut être créé à partir d’instructions formulées en langage naturel, puis modifié au moyen d’instructions supplémentaires. Par conséquent, la couleur ne constitue plus seulement une propriété d’une image déjà réalisée, mais peut devenir un facteur délibérément modifiable au cours du processus de création de l’image. Cela ouvre une nouvelle possibilité pour étudier de quelle manière différentes configurations chromatiques peuvent influencer l’expérience visuelle des enfants.
+                    </p>
+
+                    <p>
+                        L’une des idées les plus importantes de la recherche est qu’une même couleur ne possède pas nécessairement la même importance perceptuelle dans des environnements différents. L’effet d’une couleur peut, par exemple, être influencé par les formes à côté desquelles elle apparaît, par l’arrière-plan, par le niveau de contraste, par les conditions d’éclairage dans lesquelles elle est visible, ainsi que par les autres couleurs qui l’entourent. Il ne suffirait donc pas d’étudier la perception des couleurs chez les enfants uniquement en observant s’ils reconnaissent ou non une couleur donnée. Selon la recherche, il faut également prendre en compte la manière dont la couleur s’articule avec l’ensemble de l’environnement visuel.
+                    </p>
+
+                    <div class="highlight">
+                        La question centrale n’est pas simplement de savoir « quelle couleur produit quel effet sur l’enfant », mais de déterminer comment l’enfant perçoit la couleur en tant que partie d’un environnement visuel complexe.
+                    </div>
+
+                    <p>
+                        C’est dans ce contexte que l’étude introduit la notion de « variable générative ». Cela signifie que, lors de la génération d’une image, la couleur peut devenir une propriété visuelle qui peut être volontairement modifiée et comparée. Cette expression ne signifie toutefois pas que l’intelligence artificielle ne modifie, dans tous les cas, que la couleur. Par exemple, si l’on modifie l’instruction relative à la couleur dans une image, cela peut également entraîner des modifications de la composition, de l’éclairage, de la forme, de la texture ou d’autres parties de l’image.
+                    </p>
+
+                    <p>
+                        Cela conduit à l’un des problèmes méthodologiques les plus importants de la recherche. Si un enfant réagit différemment à deux images, on ne peut pas automatiquement affirmer que la différence est due à la couleur. Il est possible que d’autres propriétés de l’image aient également changé entre-temps. C’est pourquoi, dans les recherches ultérieures, il sera très important de vérifier que, parallèlement à la modification de la couleur, le plus grand nombre possible d’autres propriétés visuelles reste inchangé. Ce n’est qu’ainsi qu’il sera possible de déterminer de manière plus fiable si la différence observée dans la réaction perceptuelle des enfants est réellement liée à la couleur.
+                    </p>
+
+                    <p>
+                        La recherche définit également plusieurs variables chromatiques susceptibles de faire l’objet d’études ultérieures. Il peut s’agir, par exemple, de la teinte, de la saturation ou de la chromaticité, de la luminosité, du contraste de luminance, de la combinaison de différentes couleurs, de la diversité des couleurs, ainsi que de la manière dont les couleurs sont réparties spatialement dans un environnement visuel donné. Ces variables ne doivent pas nécessairement être étudiées comme des facteurs indépendants ; il est également possible d’observer comment elles interagissent avec les autres éléments de l’image.
+                    </p>
+
+                    <div class="concept-card">
+                        <div class="concept">
+                            <span class="concept-label">Variable</span>
+                            <strong>Teinte · Saturation · Luminosité</strong>
+                        </div>
+
+                        <div class="concept">
+                            <span class="concept-label">Contexte</span>
+                            <strong>Contraste · Composition · Éclairage</strong>
+                        </div>
+
+                        <div class="concept">
+                            <span class="concept-label">Relation</span>
+                            <strong>Combinaison · Diversité · Répartition spatiale</strong>
+                        </div>
+
+                        <div class="concept">
+                            <span class="concept-label">Contrôle</span>
+                            <strong>Comparaison · Stabilité · Fiabilité</strong>
+                        </div>
+                    </div>
+
+                    <p>
+                        Dans cette recherche, l’intelligence artificielle n’est donc pas avant tout l’objet de la recherche elle-même, mais un outil potentiel. Son rôle consiste à permettre de créer rapidement et relativement facilement différentes variantes visuelles. Cela pourrait permettre de produire plusieurs versions d’une même situation visuelle, dans lesquelles, par exemple, seule la configuration chromatique serait conçue de manière différente. La comparaison de ces variantes pourrait ensuite permettre d’étudier quelles différences perceptuelles les enfants perçoivent.
+                    </p>
+
+                    <p>
+                        L’objectif final de la recherche n’est donc pas de démontrer qu’une certaine couleur produit nécessairement un effet psychologique ou pédagogique déterminé chez les enfants. La présente étape de la recherche est plus prudente. Elle cherche avant tout à déterminer comment rendre scientifiquement étudiable la relation entre la couleur, l’environnement visuel et l’expérience perceptuelle des enfants.
+                    </p>
+
+                    <p>
+                        Dans le cadre des recherches ultérieures, il serait donc possible de créer des situations visuelles contrôlées dans lesquelles la couleur varierait de différentes manières. Ces situations pourraient être présentées à des enfants, puis l’on pourrait examiner quelles différences ils perçoivent ou de quelle manière ils y réagissent. La question la plus importante serait de déterminer dans quelle mesure les différences perçues peuvent être attribuées à la couleur elle-même, et dans quelle mesure elles résultent d’une modification de la configuration visuelle dans son ensemble.
+                    </p>
+
+                    <p>
+                        Dans l’ensemble, la recherche examine le rôle de la couleur dans l’environnement d’apprentissage et pédagogique des enfants, tout en prenant en compte le fait que l’intelligence artificielle générative crée de nouvelles possibilités pour la création et la modification des environnements visuels. La question centrale de la recherche n’est pas simplement de savoir « quelle couleur produit quel effet sur l’enfant », mais plutôt de déterminer comment l’enfant perçoit la couleur en tant que partie d’un environnement visuel complexe, et comment cette relation peut être étudiée de manière contrôlée lorsque l’environnement visuel peut être rapidement modifié à l’aide de l’intelligence artificielle.
+                    </p>
+
+                    <p>
+                        La version actuelle du document constitue donc la base d’une recherche ultérieure. Elle ne présente pas de résultats empiriques concrets, mais définit le problème à étudier, les variables potentielles de la couleur, ainsi que la question méthodologique de savoir dans quelle mesure les images créées à l’aide de l’IA générative peuvent être contrôlées et comparées de manière fiable. Il appartiendra aux recherches futures de déterminer comment transformer ces propositions théoriques en une étude concrète menée auprès d’enfants.
+                    </p>
+
+                </div>
+            </article>
+        </div>
+    </section>
+
+</main>
+
+<footer class="site-footer" id="contact">
+    <div class="footer-inner">
+
+        <h2 class="footer-heading">
+            Recherche, culture<br>
+            <span>&amp; intelligence visuelle.</span>
+        </h2>
+
+        <div class="footer-links">
+
+            <a class="footer-link" href="mailto:contact@nvo987.fr">
+                <span class="footer-link-label">Contact</span>
+                <span class="footer-link-value">contact@nvo987.fr</span>
+            </a>
+
+            <a class="footer-link"
+               href="https://identity.nvo987.us"
+               target="_blank"
+               rel="noopener noreferrer"
+               aria-label="Identité DID did:web:identity.nvo987.us">
+                <span class="footer-link-label">Identité numérique</span>
+                <span class="footer-link-value mono">did:web:identity.nvo987.us</span>
+            </a>
+
+            <a class="footer-link"
+               href="https://www.nexarium.us"
+               target="_blank"
+               rel="noopener noreferrer"
+               aria-label="Visiter www.nexarium.us">
+                <span class="footer-link-label">Site associé</span>
+                <span class="footer-link-value">www.nexarium.us ↗</span>
+            </a>
+
+        </div>
+
+        <div class="footer-bottom">
+            <p>© 2026 NVO987 · Document de recherche</p>
+            <p>recherche.nvo987.fr</p>
+        </div>
+
+    </div>
+</footer>
+
+</body>
+  </html> 
